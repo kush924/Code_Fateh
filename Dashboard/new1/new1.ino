@@ -38,20 +38,29 @@ sd();
    if (SD.begin(CS_pin))
   {
     Serial.println("SD card is ready to use.");
+    lcd.clear(();
+    lcd.setCursor(3,0);
+    lcd.print("sd ready");
   } else
   {
     Serial.println("SD card initialization failed");
+    lcd.clear();
+    lcd.setCursor(3,0);
+    lcd.print("sd fail");
   }
  sd();
   sdcard_file = SD.open("data.txt", FILE_WRITE);
 
   if (sdcard_file) { 
-    sdcard_file.print(",Time in (ms),RPM,TEMP,Speed,Distance,Brake");   
+    sdcard_file.print(",Time in (ms),Speed,Distance,Brake");   
     sdcard_file.println();
     sdcard_file.close();
   }
   else {
     Serial.println("error opening test.txt");
+    lcd.clear();
+    lcd.setCursor(3,0);
+    lcd.print("sd open fail");
   }
 }
 
