@@ -6,6 +6,10 @@
 File sdcard_file;
 LiquidCrystal_I2C lcd(0x27,16,2);
 
+volatile long x , count = 0; //steer
+unsigned long mytime;//steer
+int z,l; //steer
+String a;//steer
 int CS_pin = 9; // sd card ss pin
 int pinR=4;   //speed sensor
 unsigned long duration; // 
@@ -26,6 +30,15 @@ void sd(){
   }
 
 void setup() {
+    pinMode(2, INPUT_PULLUP);//steer 
+
+  
+  pinMode(3, INPUT_PULLUP); //steer
+   
+  attachInterrupt(digitalPinToInterrupt(2), A, RISING);//steer
+   
+  attachInterrupt(digitalPinToInterrupt(3), B, RISING);//steer
+  
   Serial.begin(9600);
   lcd.init();
   lcd.clear();         
@@ -53,7 +66,7 @@ sd();
   sdcard_file = SD.open("data.txt", FILE_WRITE);
 
   if (sdcard_file) { 
-    sdcard_file.print(",Time in (ms),Speed,Distance,Brake");   
+    sdcard_file.print(",Time in (ms),Speed,Distance,Brake,steer");   
     sdcard_file.println();
     sdcard_file.close();
   }
@@ -67,6 +80,16 @@ sd();
 
 
 void loop() {
+
+ //steer
+  mytime = millis();
+  if( count != x ){
+  z = count;
+  z =-z;
+  x = count;
+  l=z*0.25;
+  }
+  
 
 lcd.init();
   lcd.clear();         
@@ -93,6 +116,8 @@ voltage = analogRead(A0);
   Serial.print(Dist);  
   Serial.print(",");
   Serial.print(brake);
+  Serial.print(",");
+  Serial.print(l);
   Serial.println();
 
      sd();
@@ -106,6 +131,8 @@ voltage = analogRead(A0);
     sdcard_file.print(Dist);
     sdcard_file.print(",");
     sdcard_file.println(brake);  
+    sdcard_file.print(",");
+    sdcard_file.println(l);  
     sdcard_file.close(); // close the file
   }
   // if the file didn't open, print an error:
@@ -125,6 +152,8 @@ voltage = analogRead(A0);
   Serial.print(Dist); 
   Serial.print(",");
   Serial.print(brake);
+  Serial.print(",");
+  Serial.print(l);
   Serial.println();
   sd();
   sdcard_file = SD.open("data.txt", FILE_WRITE);
@@ -137,11 +166,31 @@ voltage = analogRead(A0);
     sdcard_file.print(Dist);
     sdcard_file.print(",");
     sdcard_file.println(brake);
+    sdcard_file.print(",");
+    sdcard_file.println(l);
     sdcard_file.close(); // close the file
   }
   else {
     Serial.println("error opening test.txt");
   }
   
+  }
+}
+
+
+//steer
+void A() {
+  if(digitalRead(3)==LOW) {
+  count++;
+  }else{
+  count--;
+  }
+  }
+   
+  void B() {
+  if(digitalRead(2)==LOW) {
+  count--;
+  }else{
+  count++;
   }
 }
