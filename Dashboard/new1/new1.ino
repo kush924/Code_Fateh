@@ -32,7 +32,7 @@ void setup() {
   pinMode(pinR,INPUT);
   pinMode(CS_pin, OUTPUT);
  pinMode(A0,INPUT);
-}
+
 
 sd();
    if (SD.begin(CS_pin))
@@ -53,4 +53,85 @@ sd();
   else {
     Serial.println("error opening test.txt");
   }
+}
+
+
+void loop() {
+
+lcd.init();
+  lcd.clear();         
+  lcd.backlight(); 
+  lcd.setCursor(0,0); 
+voltage = analogRead(A0);
+  voltage = voltage*(5.0 / 1023.0);
+  float brake = (voltage-0.5)*25;
+  duration = pulseIn(pinR,HIGH);
+  Serial.println(duration);
+  if (duration>500){
+  AngularSpeed= (0.8377*1000000)/duration;
+  speedms=(AngularSpeed*WheelRadius);
+  speedkmh=(speedms*3.6);
+  counter=counter+1;
+  
+  Dist = counter*Circum;
+
+  Serial.print(",");
+  Serial.print(millis());
+  Serial.print(",");
+  Serial.print(speedkmh);
+  Serial.print(",");
+  Serial.print(Dist);  
+  Serial.print(",");
+  Serial.print(brake);
+  Serial.println();
+
+     sd();
+     sdcard_file = SD.open("data.txt", FILE_WRITE);
+   if (sdcard_file) { 
+    sdcard_file.print(",");  
+    sdcard_file.print(millis());
+    sdcard_file.print(",");
+    sdcard_file.print(speedkmh);
+    sdcard_file.print(",");
+    sdcard_file.print(Dist);
+    sdcard_file.print(",");
+    sdcard_file.println(brake);  
+    sdcard_file.close(); // close the file
+  }
+  // if the file didn't open, print an error:
+  else {
+    Serial.println("error opening test.txt");
+  }
+
+  }
+  
+  else{
  
+  Serial.print(",");
+  Serial.print(millis());
+  Serial.print(",");
+  Serial.print(0);
+  Serial.print(",");
+  Serial.print(Dist); 
+  Serial.print(",");
+  Serial.print(brake);
+  Serial.println();
+  sd();
+  sdcard_file = SD.open("data.txt", FILE_WRITE);
+   if (sdcard_file) {    
+    sdcard_file.print(","); 
+    sdcard_file.print(millis());
+    sdcard_file.print(",");
+    sdcard_file.print("0");
+    sdcard_file.print(",");
+    sdcard_file.print(Dist);
+    sdcard_file.print(",");
+    sdcard_file.println(brake);
+    sdcard_file.close(); // close the file
+  }
+  else {
+    Serial.println("error opening test.txt");
+  }
+  
+  }
+}
