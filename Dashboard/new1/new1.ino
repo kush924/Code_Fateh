@@ -38,7 +38,7 @@ sd();
    if (SD.begin(CS_pin))
   {
     Serial.println("SD card is ready to use.");
-    lcd.clear(();
+    lcd.clear();
     lcd.setCursor(3,0);
     lcd.print("sd ready");
   } else
