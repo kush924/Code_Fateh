@@ -130,7 +130,7 @@ voltage = analogRead(A0);
     sdcard_file.print(",");
     sdcard_file.print(Dist);
     sdcard_file.print(",");
-    sdcard_file.println(brake);  
+    sdcard_file.print(brake);  
     sdcard_file.print(",");
     sdcard_file.println(l);  
     sdcard_file.close(); // close the file
@@ -165,7 +165,7 @@ voltage = analogRead(A0);
     sdcard_file.print(",");
     sdcard_file.print(Dist);
     sdcard_file.print(",");
-    sdcard_file.println(brake);
+    sdcard_file.print(brake);
     sdcard_file.print(",");
     sdcard_file.println(l);
     sdcard_file.close(); // close the file

@@ -1,6 +1,7 @@
 volatile long x , counter = 0; 
 unsigned long mytime;
 int z,l;
+String a;
 void setup() {
   Serial.begin (9600);
   pinMode(2, INPUT_PULLUP); 
@@ -12,7 +13,7 @@ void setup() {
    
   attachInterrupt(digitalPinToInterrupt(3), B, RISING);
   }
-  String a;
+
   void loop() {
   mytime = millis();
   if( counter != x ){
