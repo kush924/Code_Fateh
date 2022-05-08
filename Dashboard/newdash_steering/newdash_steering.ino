@@ -100,8 +100,8 @@ voltage = analogRead(A0);
   float brake = (voltage-0.5)*25;
   duration = pulseIn(pinR,HIGH);
   Serial.println(duration);
-  if (duration>500){
-  AngularSpeed= (0.8377*1000000)/duration;
+  if (duration>1500){
+  AngularSpeed= (0.4377*1000000)/duration;
   speedms=(AngularSpeed*WheelRadius);
   speedkmh=(speedms*3.6);
   counter=counter+1;
