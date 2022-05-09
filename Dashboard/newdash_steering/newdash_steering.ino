@@ -91,10 +91,7 @@ void loop() {
   }
   
 
-lcd.init();
-  lcd.clear();         
-  lcd.backlight(); 
-  lcd.setCursor(0,0); 
+  lcd.clear();        
 voltage = analogRead(A0);
   voltage = voltage*(5.0 / 1023.0);
   float brake = (voltage-0.5)*25;
@@ -193,4 +190,12 @@ void A() {
   }else{
   count++;
   }
+  lcd.setCursor(3,0);
+  lcd.print("speed");
+  lcd.setCursor(10,0);
+  lcd.print(speedkmh);
+  lcd.setCursor(3,1);
+  lcd.print("angle");
+  lcd.setCursor(10,1);
+  lcd.print(l);
 }

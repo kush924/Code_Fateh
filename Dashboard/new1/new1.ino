@@ -68,8 +68,7 @@ sd();
 
 void loop() {
 
-lcd.init();
-  lcd.clear();         
+  lcd.init();        
   lcd.backlight(); 
   lcd.setCursor(0,0); 
 voltage = analogRead(A0);
@@ -144,4 +143,13 @@ voltage = analogRead(A0);
   }
   
   }
+
+ lcd.setCursor(3,0);
+  lcd.print("speed");
+  lcd.setCursor(10,0);
+  lcd.print(speedkmh);
+  lcd.setCursor(3,1);
+  lcd.print("dist");
+  lcd.setCursor(10,1);
+  lcd.print(Dist);
 }
