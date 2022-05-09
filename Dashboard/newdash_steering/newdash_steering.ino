@@ -24,10 +24,6 @@ float voltage=0;
 long unsigned int counter=0; 
 
 
-void sd(){
-  digitalWrite(9,LOW);
-  digitalWrite(10,HIGH);
-  }
 
 void setup() {
     pinMode(2, INPUT_PULLUP);//steer 
@@ -40,16 +36,14 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(3), B, RISING);//steer
   
   Serial.begin(9600);
-  lcd.init();
-  lcd.clear();         
+  lcd.init();        
   lcd.backlight(); 
   pinMode(pinR,INPUT);
   pinMode(CS_pin, OUTPUT);
  pinMode(A0,INPUT);
 
 
-sd();
-   if (SD.begin(CS_pin))
+  if (SD.begin(CS_pin))
   {
     Serial.println("SD card is ready to use.");
     lcd.clear();
@@ -62,8 +56,7 @@ sd();
     lcd.setCursor(3,0);
     lcd.print("sd fail");
   }
- sd();
-  sdcard_file = SD.open("data.txt", FILE_WRITE);
+ sdcard_file = SD.open("data.txt", FILE_WRITE);
 
   if (sdcard_file) { 
     sdcard_file.print(",Time in (ms),Speed,Distance,Brake,steer");   
@@ -90,9 +83,8 @@ void loop() {
   l=z*0.25;
   }
   
-
-  lcd.clear();        
-voltage = analogRead(A0);
+    
+ voltage = analogRead(A0);
   voltage = voltage*(5.0 / 1023.0);
   float brake = (voltage-0.5)*25;
   duration = pulseIn(pinR,HIGH);
@@ -116,10 +108,19 @@ voltage = analogRead(A0);
   Serial.print(",");
   Serial.print(l);
   Serial.println();
+  lcd.clear();
+  lcd.setCursor(3,0);
+  lcd.print("speed");
+  lcd.setCursor(10,0);
+  lcd.print(speedkmh);
+  lcd.setCursor(3,1);
+  lcd.print("angle");
+  lcd.setCursor(10,1);
+  lcd.print(l);
 
-     sd();
-     sdcard_file = SD.open("data.txt", FILE_WRITE);
-   if (sdcard_file) { 
+
+    sdcard_file = SD.open("data.txt", FILE_WRITE);
+    if (sdcard_file) { 
     sdcard_file.print(",");  
     sdcard_file.print(millis());
     sdcard_file.print(",");
@@ -152,7 +153,9 @@ voltage = analogRead(A0);
   Serial.print(",");
   Serial.print(l);
   Serial.println();
-  sd();
+
+
+  
   sdcard_file = SD.open("data.txt", FILE_WRITE);
    if (sdcard_file) {    
     sdcard_file.print(","); 
@@ -190,12 +193,5 @@ void A() {
   }else{
   count++;
   }
-  lcd.setCursor(3,0);
-  lcd.print("speed");
-  lcd.setCursor(10,0);
-  lcd.print(speedkmh);
-  lcd.setCursor(3,1);
-  lcd.print("angle");
-  lcd.setCursor(10,1);
-  lcd.print(l);
+
 }

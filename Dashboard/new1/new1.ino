@@ -94,6 +94,16 @@ voltage = analogRead(A0);
   Serial.print(brake);
   Serial.println();
 
+  lcd.setCursor(3,0);
+  lcd.print("speed");
+  lcd.setCursor(10,0);
+  lcd.print(speedkmh);
+  lcd.setCursor(3,1);
+  lcd.print("dist");
+  lcd.setCursor(10,1);
+  lcd.print(Dist);
+  
+
      sd();
      sdcard_file = SD.open("data.txt", FILE_WRITE);
    if (sdcard_file) { 
@@ -144,12 +154,5 @@ voltage = analogRead(A0);
   
   }
 
- lcd.setCursor(3,0);
-  lcd.print("speed");
-  lcd.setCursor(10,0);
-  lcd.print(speedkmh);
-  lcd.setCursor(3,1);
-  lcd.print("dist");
-  lcd.setCursor(10,1);
-  lcd.print(Dist);
+
 }
