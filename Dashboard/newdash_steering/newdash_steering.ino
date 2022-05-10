@@ -108,7 +108,7 @@ void loop() {
   Serial.print(",");
   Serial.print(l);
   Serial.println();
-  lcd.clear();
+    lcd.clear();
   lcd.setCursor(3,0);
   lcd.print("speed");
   lcd.setCursor(10,0);
@@ -117,6 +117,7 @@ void loop() {
   lcd.print("angle");
   lcd.setCursor(10,1);
   lcd.print(l);
+
 
 
     sdcard_file = SD.open("data.txt", FILE_WRITE);
@@ -132,6 +133,7 @@ void loop() {
     sdcard_file.print(",");
     sdcard_file.println(l);  
     sdcard_file.close(); // close the file
+
   }
   // if the file didn't open, print an error:
   else {
@@ -154,6 +156,15 @@ void loop() {
   Serial.print(l);
   Serial.println();
 
+  lcd.clear();
+  lcd.setCursor(3,0);
+  lcd.print("speed");
+  lcd.setCursor(10,0);
+  lcd.print("0");
+  lcd.setCursor(3,1);
+  lcd.print("angle");
+  lcd.setCursor(10,1);
+  lcd.print(l);
 
   
   sdcard_file = SD.open("data.txt", FILE_WRITE);
@@ -169,6 +180,7 @@ void loop() {
     sdcard_file.print(",");
     sdcard_file.println(l);
     sdcard_file.close(); // close the file
+ 
   }
   else {
     Serial.println("error opening test.txt");

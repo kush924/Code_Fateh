@@ -4,7 +4,7 @@ int Lf =6;
 int Lb =5;
 int Mop =9;
 
-int Speed = 255;
+int Speed = 180;
 char command;
 
 void setup() {
