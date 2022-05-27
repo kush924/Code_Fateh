@@ -86,8 +86,6 @@ void loop() {
   Serial.print(Dist);  
   Serial.print(",");
   Serial.print(brake);
-  Serial.print(",");
-  Serial.print(l);
   Serial.println();
     lcd.clear();
   lcd.setCursor(3,0);
@@ -96,8 +94,6 @@ void loop() {
   lcd.print(speedkmh);
   lcd.setCursor(3,1);
   lcd.print("angle");
-  lcd.setCursor(10,1);
-  lcd.print(l);
 
 
 
@@ -111,8 +107,6 @@ void loop() {
     sdcard_file.print(Dist);
     sdcard_file.print(",");
     sdcard_file.print(brake);  
-    sdcard_file.print(",");
-    sdcard_file.println(l);  
     sdcard_file.close(); // close the file
 
   }
@@ -133,8 +127,6 @@ void loop() {
   Serial.print(Dist); 
   Serial.print(",");
   Serial.print(brake);
-  Serial.print(",");
-  Serial.print(l);
   Serial.println();
 
   lcd.clear();
@@ -142,10 +134,6 @@ void loop() {
   lcd.print("speed");
   lcd.setCursor(10,0);
   lcd.print("0");
-  lcd.setCursor(3,1);
-  lcd.print("angle");
-  lcd.setCursor(10,1);
-  lcd.print(l);
 
   
   sdcard_file = SD.open("data.txt", FILE_WRITE);
@@ -158,8 +146,6 @@ void loop() {
     sdcard_file.print(Dist);
     sdcard_file.print(",");
     sdcard_file.print(brake);
-    sdcard_file.print(",");
-    sdcard_file.println(l);
     sdcard_file.close(); // close the file
  
   }
@@ -168,8 +154,4 @@ void loop() {
   }
   
   }
-}
-
-
-
 }
