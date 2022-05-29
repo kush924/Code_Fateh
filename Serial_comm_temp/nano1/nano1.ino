@@ -1,6 +1,7 @@
 #include <SoftwareSerial.h>
 SoftwareSerial softSerial(3,4);
-String a="abc";
+float a=50.2;
+String b = "abc";
 unsigned long timer = 0;
 
 void setup() {
@@ -12,6 +13,7 @@ void loop() {
   
   if((millis()-timer)>1000){ // print data every 10ms
   softSerial.print(a);
+  softSerial.print(b);
  // softSerial.write(F);
   timer = millis();  
   
