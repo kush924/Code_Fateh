@@ -1,3 +1,4 @@
+//nano
 #include <SoftwareSerial.h>
 SoftwareSerial softSerial(3,4);
 int p1 = 2;
