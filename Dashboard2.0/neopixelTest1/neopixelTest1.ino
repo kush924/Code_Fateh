@@ -1,9 +1,21 @@
-void setup() {
-  // put your setup code here, to run once:
+#include <FastLED.h>
 
+int LED_pin = 2;
+int LED_num = 19;
+
+CRGB leds[LED_num];
+
+void setup{
+    FastLED.addLeds<WS2812, LED_PIN, RGB>(leds, NUM_LEDS);
+    FastLED.setMaxPowerInVoltsAndMilliamps(5,500);
+    FastLED.clear();
+    FastLED.show();
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+void loop{
+  leds[0] = CRGB(255,0,0);
+  leds[0] = CRGB(0,255,0);
+  leds[0] = CRGB(0,0,255);
 
+  FastLED.show();
 }
