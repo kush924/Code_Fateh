@@ -1,9 +1,9 @@
 #include <FastLED.h>
 
-int LED_pin = 2;
+int LED_pin = 31;
 int LED_num = 19;
 
-CRGB leds[LED_num];
+CRGB leds[19];
 
 void setup{
     FastLED.addLeds<WS2812, LED_PIN, RGB>(leds, NUM_LEDS);
