@@ -13,8 +13,9 @@ ON DASH
 3	toggle switch
 1	SD card module
 1	Neopixle LED
+1	USB B port
 
-Wires incoming to PCB
+Wires incoming to Central DAQ Unit
 
 	for Power
 		+12v
@@ -24,6 +25,10 @@ Wires incoming to PCB
 	for CAN
 		can High 
 		can LOW
+	for Proximity sensor
+		+12v
+		GND
+		Signal
 	for SD
 		SPI pins
 	for LORA
@@ -31,7 +36,15 @@ Wires incoming to PCB
 		Rx
 		Tx
 	
+	
 DATA to display
+	Battery Voltage
+	TPS
+	Coolant Temp
+	Air Temp
+	RPM
+	Speed
+	Gear
 
 APIs to make
 	
