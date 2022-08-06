@@ -7,8 +7,8 @@
 #define clockFreq 8E6
 #define canFreq   500E3
 
-unsigned long RPM;
-float temp;
+unsigned long RPM = 0;        //CAN
+float TEMP = 0 , VOLT = 0 ;
 
 
 void setup(){
@@ -22,7 +22,7 @@ void setup(){
 }
     
 void loop(){
-   getCAN(&RPM,&temp);
+   getCAN(&RPM,&TEMP,&VOLT);
       
     
 

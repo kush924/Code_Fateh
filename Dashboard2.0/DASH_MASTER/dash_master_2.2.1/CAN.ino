@@ -10,7 +10,7 @@ void canSetup(int can_cs, int can_int, long can_freq, long clock_freq) {
 }
 
 //CAN
-void getCAN(unsigned long* rpm, float* temp){
+void getCAN(unsigned long* rpm, float* temp, float* volt){
   
   int rMSB=0,rLSB=0; //rpm bits
   int tMSB=0,tLSB=0;
@@ -61,6 +61,7 @@ void getCAN(unsigned long* rpm, float* temp){
       
       }
      *temp=((tMSB*256)+tLSB)*0.1;
+     *volt=((bMSB*256)+bLSB)*0.01;
     }
 
   }
