@@ -2,7 +2,7 @@
 #include<SD.h>
 #include<SPI.h>
 
-#define cs 10
+#define cs 10             //CAN
 #define in 2
 #define clockFreq 8E6
 #define canFreq   500E3

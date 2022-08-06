@@ -14,6 +14,7 @@ void getCAN(unsigned long* rpm, float* temp){
   
   int rMSB=0,rLSB=0; //rpm bits
   int tMSB=0,tLSB=0;
+  int bMSB=0,bLSB=0;
   
   int packetSize = CAN.parsePacket();
   long packId = CAN.packetId();
@@ -40,6 +41,14 @@ void getCAN(unsigned long* rpm, float* temp){
 
     int e=0;
     while (CAN.available()) {
+      if (e==0){
+        e++;
+        bLSB=(int)CAN.read();
+      }
+      if (e==1){
+        e++;
+        bMSB=(int)CAN.read();
+      }
       if (e==4){
           e++;
           tLSB=(int)CAN.read();
